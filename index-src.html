@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Redirect</title>
+
+    <script type="module">
+        fetch("links.json")
+        .then(links => links.json())
+        .then(links => {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            Object.keys(links).forEach(key => {
+                const search = urlParams.get(key);
+                if (search !== null) window.location.replace(links[key]);
+            })
+        });
+    </script>
+</head>
+<body></body>
+</html>
